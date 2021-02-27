@@ -3,8 +3,8 @@
 namespace App\Console\Commands;
 
 use App\Dtos\CurrencyExchangeDto;
+use App\Exceptions\CurrencyException;
 use App\Services\CurrencyRateService;
-use App\Services\CurrencyService;
 use Illuminate\Console\Command;
 
 class Exchange extends Command
@@ -46,7 +46,25 @@ class Exchange extends Command
         $currencyToCode = $this->ask('Put currency code to');
         $sum = $this->ask('Put sum to exchange');
 
-        $sumAfterExchange = $this->currencyRateService->exchange(new CurrencyExchangeDto($currencyFromCode, $currencyToCode, $sum));
-        $this->info('sum after exchange is: ' . $sumAfterExchange);
+        if (!$currencyFromCode || !is_string($currencyFromCode)) {
+            $this->error('bad currency from');die();
+        }
+
+        if (!$currencyToCode || !is_string($currencyToCode)) {
+            $this->error('bad currency to');die();
+        }
+
+        if (!$sum || !is_numeric($sum)) {
+            $this->error('bad sum');die();
+        }
+
+        try {
+            $sumAfterExchange = $this->currencyRateService->exchange(new CurrencyExchangeDto($currencyFromCode, $currencyToCode, $sum));
+            $this->info('sum after exchange is: ' . $sumAfterExchange);
+        } catch (CurrencyException $e) {
+            $this->error($e->getMessage());
+        } catch (\Exception $e) {
+            $this->error($e->getMessage());
+        }
     }
 }

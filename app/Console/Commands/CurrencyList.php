@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use App\Services\CurrencyService;
 use Illuminate\Console\Command;
-use PhpParser\Node\Expr\Array_;
 
 class CurrencyList extends Command
 {
