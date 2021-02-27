@@ -47,20 +47,20 @@ class Exchange extends Command
         $sum = $this->ask('Put sum to exchange');
 
         if (!$currencyFromCode || !is_string($currencyFromCode)) {
-            $this->error('bad currency from');die();
+            $this->error('Bad currency from');die();
         }
 
         if (!$currencyToCode || !is_string($currencyToCode)) {
-            $this->error('bad currency to');die();
+            $this->error('Bad currency to');die();
         }
 
         if (!$sum || !is_numeric($sum)) {
-            $this->error('bad sum');die();
+            $this->error('Bad sum');die();
         }
 
         try {
             $sumAfterExchange = $this->currencyRateService->exchange(new CurrencyExchangeDto($currencyFromCode, $currencyToCode, $sum));
-            $this->info('sum after exchange is: ' . $sumAfterExchange);
+            $this->info('Sum after exchange is: ' . $sumAfterExchange);
         } catch (CurrencyException $e) {
             $this->error($e->getMessage());
         } catch (\Exception $e) {

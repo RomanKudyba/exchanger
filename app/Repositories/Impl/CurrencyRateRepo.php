@@ -46,7 +46,7 @@ class CurrencyRateRepo implements CurrencyRateRepoInterface
             ->where('to_currency_id', $currencyTo->id)
             ->first();
         if (!$currencyRate) {
-            throw new CurrencyException('currency rate not found', 404);
+            throw new CurrencyException('Currency rate from '.$currencyFrom->code.' to '.$currencyTo->code.' not found', 404);
         }
 
         return $currencyRate['value'] * $currencyExchangeDto->getSum();
