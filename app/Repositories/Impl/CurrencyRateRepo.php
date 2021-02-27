@@ -1,11 +1,12 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
 use App\Dtos\CurrencyExchangeDto;
 use App\Models\Currency;
 use App\Models\CurrencyRate;
+use App\Repositories\CurrencyRateRepoInterface;
 use Illuminate\Support\Collection;
 
 class CurrencyRateRepo implements CurrencyRateRepoInterface

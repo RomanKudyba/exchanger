@@ -4,9 +4,9 @@
 namespace App\Providers;
 
 
-use App\Repositories\CurrencyRateRepo;
+use App\Repositories\Impl\CurrencyRateRepo;
 use App\Repositories\CurrencyRateRepoInterface;
-use App\Repositories\CurrencyRepo;
+use App\Repositories\Impl\CurrencyRepo;
 use App\Repositories\CurrencyRepoInterface;
 use Illuminate\Support\ServiceProvider;
 

@@ -1,9 +1,10 @@
 <?php
 
 
-namespace App\Repositories;
+namespace App\Repositories\Impl;
 
 use App\Models\Currency;
+use App\Repositories\CurrencyRepoInterface;
 use Illuminate\Database\Eloquent\Collection;
 
 class CurrencyRepo implements CurrencyRepoInterface
